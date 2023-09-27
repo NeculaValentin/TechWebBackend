@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -40,12 +39,29 @@ public class MatchService {
 
     public Tablero4R poner(UUID uuid, Move move) throws MovimientoIlegalException {
         Tablero4R tablero = getOrElseThrow(uuid);
-        String[][] casillas = tablero.getCasillas();
-        int casillaLibre = -1;
-        if( casillaLibre == -1)
-            throw new MovimientoIlegalException(); //TODO
-        casillas[move.getCol()][move.getRow()] = move.getColor().getName();
+        char[][] casillas = tablero.getCasillas();
+        int col = move.getCol();
+        validateMove(tablero, move);
+        for (int i = Tablero4R.ROW - 1; i >= 0; i--) {
+            if (casillas[i][col] == Character.MIN_VALUE) {
+                casillas[i][col] = move.getColor();
+                tablero.setLastColor(move.getColor());
+                return tablero;
+            }
+        }
+        tablero.print2D();
+
         return tablero;
+    }
+
+    private static void validateMove(Tablero4R t, Move m) throws MovimientoIlegalException {
+        int col = m.getCol();
+        if (!(col >= 0 && col < Tablero4R.COL && t.getCasillas()[0][col] == Character.MIN_VALUE))
+            throw new MovimientoIlegalException("Illegal Move");
+
+        if (t.getLastColor() == m.getColor()) {
+            throw new MovimientoIlegalException("Not your turn");
+        }
     }
 
 
