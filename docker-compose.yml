@@ -6,8 +6,8 @@ services:
       - SYS_NICE
     restart: always
     environment:
-      - MYSQL_DATABASE=quotes
-      - MYSQL_ROOT_PASSWORD=mauFJcuf5dhRMQrjj
+      - MYSQL_ROOT_PASSWORD=$MYSQLDB_ROOT_PASSWORD
+      - MYSQL_DATABASE=$MYSQLDB_DATABASE
     ports:
       - '3306:3306'
     volumes:
@@ -15,4 +15,3 @@ services:
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
 volumes:
   db:
-    driver: local
