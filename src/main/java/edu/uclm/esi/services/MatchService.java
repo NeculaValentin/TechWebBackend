@@ -20,9 +20,7 @@ public class MatchService {
     private MatchRepository matchRepository;
 
     public Tablero4R newMatch() {
-        Tablero4R tablero = new Tablero4R();
-        matchRepository.add(tablero);
-        return tablero;
+        return matchRepository.create();
     }
 
     public List<Tablero4R> getAll() {

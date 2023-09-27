@@ -13,7 +13,7 @@ public class Tablero4R {
     public static final int ROW = 7;
     private char lastColor = 'A';
     public Tablero4R() {
-        //this.uuid = UUID.randomUUID();
+        //this.uuid = UUID.randomUUID(); Fixme
         this.uuid = UUID.fromString("6be5be84-8c69-433f-8740-c5de3fe3df3c");
     }
 

@@ -1,3 +1,7 @@
 server:
   error:
     include-stacktrace: never
+
+spring-boot:
+  environment:
+    SPRING_DATASOURCE_URL: jdbc:mysql://marqueblanchebd:3306/marque_blanche?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC

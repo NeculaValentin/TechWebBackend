@@ -9,6 +9,12 @@ import java.util.*;
 public class MatchRepository {
     private Map<UUID, Tablero4R> tableros = new HashMap<>();
 
+
+    public Tablero4R create(){
+        Tablero4R t = new Tablero4R();
+        add(t);
+        return t;
+    }
     public void add(Tablero4R tablero){
         tableros.put(tablero.getUuid(), tablero);
     }
